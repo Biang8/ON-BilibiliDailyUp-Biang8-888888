@@ -56,3 +56,15 @@ if SERVER_KEY is None:
 else:
     print(f"获取到的 SERVER_KEY: {SERVER_KEY}")
 # 是否开启sever酱,有填写则推送,空字符串则不推送 https://sct.ftqq.com/sendkey获取key
+
+def get_cookie():
+    if COOKIE_LIST and COOKIE_LIST[0]:
+        return COOKIE_LIST[0]
+    elif USE_ENVIRONMENT_VARIABLE:
+        ck = os.environ.get('BILIBILI')
+        if ck is None:
+            print("未设置BILIBILI这个环境变量 任务终止")
+            import sys
+            sys.exit(1)
+        return ck
+    return None
